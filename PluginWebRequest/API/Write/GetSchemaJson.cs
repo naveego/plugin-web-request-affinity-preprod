@@ -37,7 +37,7 @@ namespace PluginWebRequest.API.Write
                 ""Body"": {{
                     ""type"": ""string"",
                     ""title"": ""Body"",
-                    ""description"": ""The body of the request, supports .NET format strings (ex. {{""key"": {{0}} }}""
+                    ""description"": ""The body of the request, supports .NET format strings (ex. {{\""key\"": \""{{0}}\"" }}""
                 }},
                 ""Headers"": {{
                     ""type"": ""array"",
