@@ -53,7 +53,20 @@ namespace PluginWebRequest.API.Write
             
                 schema.Properties.Add(property);
             }
-            
+
+            if (schema.Properties.Count == 0)
+            {
+                var defaultProperty = new Property
+                {
+                    Id = $"default",
+                    Name = $"default property",
+                    Description = "",
+                    Type = PropertyType.String,
+                    TypeAtSource = "",
+                };
+                schema.Properties.Add(defaultProperty);
+            }
+
             return schema;
         }
     }
