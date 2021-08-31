@@ -14,6 +14,7 @@
   "canProduceMultipleSchemas": true,
   "canAcceptQueryBasedSchemas": false,
   "canUseOAuth": false,
+  "canConfigureWrite": true,
   "canWrite": true,
   "configSchema": {
     "ui": {},
