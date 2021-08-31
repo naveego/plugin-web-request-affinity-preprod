@@ -16,7 +16,22 @@
   "canUseOAuth": false,
   "canWrite": true,
   "configSchema": {
-    "ui": {},
-    "schema": {}
+    "ui": {
+      "ui:order": [
+        "Name"
+      ]
+    },
+    "schema": {
+      "type": "object",
+      "properties": {
+        "Name" : {
+          "type": "string",
+          "title": "Name",
+          "description": "Connection name."
+        }
+      },
+      "required": [
+      ]
+    }
   }
 }
