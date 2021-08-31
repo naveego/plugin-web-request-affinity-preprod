@@ -32,12 +32,12 @@ namespace PluginWebRequest.API.Write
                 ""Url"": {{
                     ""type"": ""string"",
                     ""title"": ""Url"",
-                    ""description"": ""The url of the request""
+                    ""description"": ""The url of the request, supports .NET format strings (ex. https://{{0}}.com)""
                 }},
                 ""Body"": {{
                     ""type"": ""string"",
                     ""title"": ""Body"",
-                    ""description"": ""The body of the request""
+                    ""description"": ""The body of the request, supports .NET format strings (ex. {{""key"": {{0}} }}""
                 }},
                 ""Headers"": {{
                     ""type"": ""array"",
@@ -55,7 +55,7 @@ namespace PluginWebRequest.API.Write
                                 ""type"": ""string"",
                                 ""title"": ""Value"",
                                 ""description"": ""The value of the header""
-                            }},
+                            }}
                         }}
                     }}
                 }}
