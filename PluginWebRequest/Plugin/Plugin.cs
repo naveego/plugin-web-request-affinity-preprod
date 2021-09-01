@@ -60,7 +60,7 @@ namespace PluginWebRequest.Plugin
         }
 
         /// <summary>
-        /// Establishes a connection with Campaigner.
+        /// Establishes a connection
         /// </summary>
         /// <param name="request"></param>
         /// <param name="context"></param>
@@ -106,7 +106,7 @@ namespace PluginWebRequest.Plugin
 
 
         /// <summary>
-        /// Discovers schemas located in the users Campaigner instance
+        /// Discovers schemas
         /// </summary>
         /// <param name="request"></param>
         /// <param name="context"></param>
@@ -237,7 +237,7 @@ namespace PluginWebRequest.Plugin
         }
 
         /// <summary>
-        /// Writes records to Campaigner
+        /// Writes records
         /// </summary>
         /// <param name="requestStream"></param>
         /// <param name="responseStream"></param>
@@ -248,7 +248,7 @@ namespace PluginWebRequest.Plugin
         {
             try
             {
-                Logger.Info("Writing records to Campaigner...");
+                Logger.Info($"Sending web requests...");
 
                 var schema = _server.WriteSettings.Schema;
                 var inCount = 0;
@@ -277,7 +277,7 @@ namespace PluginWebRequest.Plugin
                     }
                 }
 
-                Logger.Info($"Wrote {inCount} records to Campaigner.");
+                Logger.Info($"Wrote {inCount} records.");
             }
             catch (Exception e)
             {

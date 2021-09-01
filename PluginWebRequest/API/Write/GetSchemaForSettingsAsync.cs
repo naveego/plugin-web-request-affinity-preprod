@@ -60,7 +60,7 @@ namespace PluginWebRequest.API.Write
                 {
                     Id = $"default",
                     Name = $"default property",
-                    Description = "",
+                    Description = "This property must be mapped to have the web request triggered.",
                     Type = PropertyType.String,
                     TypeAtSource = "",
                 };
