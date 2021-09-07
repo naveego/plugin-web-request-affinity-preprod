@@ -23,10 +23,10 @@ namespace PluginWebRequest.API.Write
                 PublisherMetaJson = JsonConvert.SerializeObject(formData)
             };
 
-            var urlParams = FindParamsRegex.Match(formData.Url);
-            var bodyParams = FindParamsRegex.Match(formData.Body);
+            var urlParams = FindParamsRegex.Matches(formData.Url);
+            var bodyParams = FindParamsRegex.Matches(formData.Body);
 
-            foreach (var match in urlParams.Captures)
+            foreach (var match in urlParams)
             {
                 var property = new Property
                 {
@@ -40,7 +40,7 @@ namespace PluginWebRequest.API.Write
                 schema.Properties.Add(property);
             }
             
-            foreach (var match in bodyParams.Captures)
+            foreach (var match in bodyParams)
             {
                 var property = new Property
                 {
