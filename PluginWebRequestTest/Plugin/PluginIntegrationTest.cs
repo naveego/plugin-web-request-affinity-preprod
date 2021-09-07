@@ -271,9 +271,9 @@ namespace PluginWebRequestTest.Plugin
         ""cache-control"": ""no-cache"",
         ""postman-token"": ""5c27cd7d-6b16-4e5a-a0ef-191c9a3a275f"",
         ""user-agent"": ""PostmanRuntime/7.6.1"",
-        ""x-forwarded-port"": ""443""
+        ""x-forwarded-port"": ""{0}""
     },
-    ""url"": ""{0}""
+    ""url"": ""{1}""
 }";
             // https://postman-echo.com/post
             var formData = GetFormData("test", "https://postman-echo.com/{0}", body,"POST", new List<Header>
@@ -307,7 +307,7 @@ namespace PluginWebRequestTest.Plugin
             Assert.Equal("", schema.Description);
             Assert.Equal("https://postman-echo.com/{0}", schema.Query);
             Assert.Equal(Schema.Types.DataFlowDirection.Write, schema.DataFlowDirection);
-            Assert.Equal(2, schema.Properties.Count);
+            Assert.Equal(3, schema.Properties.Count);
 
             var property = schema.Properties[0];
             
