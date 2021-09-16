@@ -9,7 +9,7 @@ namespace PluginWebRequest.API.Write
 {
     public static partial class Write
     {
-        private static Regex FindParamsRegex = new Regex(@"\{+(\d)\}");
+        private static Regex FindParamsRegex = new Regex(@"\{(\d+)\}");
 
         public static async Task<Schema> GetSchemaForSettingsAsync(ConfigureWriteFormData formData)
         {
