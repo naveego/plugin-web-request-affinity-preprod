@@ -42,6 +42,9 @@ namespace PluginWebRequest.API.Write
                 // get record map
                 var recordMap = JsonConvert.DeserializeObject<Dictionary<string, object>>(record.DataJson);
                 
+                // get okta token
+                var token = await apiClient.GetToken();
+                
                 // write records
                 // prepare url
                 var urlValues = new List<object>();
@@ -67,6 +70,9 @@ namespace PluginWebRequest.API.Write
 
                 var url = string.Format(settings.Url, urlValues.ToArray());
                 
+                // apply okta token
+                url = url.Replace(Constants.OktaTokenFind, token);
+                
                 // prepare body
                 var bodyValues = new List<object>();
                 var bodyProperties = schema.Properties.Where(p => p.Id.StartsWith(Constants.BodyPropertyPrefix));
@@ -91,6 +97,9 @@ namespace PluginWebRequest.API.Write
 
                 var safeBody = Regex.Replace(settings.Body, @"\{(?!\d)", "{{");
                 safeBody = Regex.Replace(safeBody, @"(?<!\d)\}", "}}");
+                
+                // apply okta token
+                safeBody = safeBody.Replace(Constants.OktaTokenFind, token);
                 
                 var body = string.Format(safeBody, bodyValues.ToArray());
                 var json = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8,

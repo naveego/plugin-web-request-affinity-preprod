@@ -3,8 +3,7 @@ namespace PluginWebRequest.API.Utility
     public static class Constants
     {
         public const string TestConnectionPath = "https://www.aunalytics.com";
-        public const string CustomProperty = "CustomProperty";
-        public const string EmptySchemaDescription = "This schema has no properties. This is likely due to to there being no data.";
+        public const string OktaTokenFind = "[OKTA_TOKEN]";
 
         public const string MethodGet = "GET";
         public const string MethodPost = "POST";

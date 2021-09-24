@@ -13,9 +13,14 @@ namespace PluginWebRequest.API.Factory
             Client = client;
         }
 
-        public IApiClient CreateApiClient(ConfigureWriteFormData settings)
+        public IApiClient CreateApiClient(ConfigureWriteFormData settings, Settings connectSettings)
         {
-            return new ApiClient(Client, settings);
+            return new ApiClient(Client, settings, connectSettings);
+        }
+
+        public IApiClient CreateApiClient(Settings connectSettings)
+        {
+            return new ApiClient(Client, connectSettings);
         }
     }
 }

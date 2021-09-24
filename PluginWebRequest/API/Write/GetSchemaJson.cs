@@ -32,17 +32,17 @@ namespace PluginWebRequest.API.Write
                 ""Url"": {{
                     ""type"": ""string"",
                     ""title"": ""Url"",
-                    ""description"": ""The url of the request, supports .NET format strings (ex. https://{{0}}.com)""
+                    ""description"": ""The url of the request, supports .NET format strings (ex. https://{{0}}.com), supports Okta token injection (ex. https://aunalytics.com?token={Constants.OktaTokenFind})""
                 }},
                 ""Body"": {{
                     ""type"": ""string"",
                     ""title"": ""Body"",
-                    ""description"": ""The body of the request, supports .NET format strings (ex. {{\""key\"": \""{{0}}\"" }}""
+                    ""description"": ""The body of the request, supports .NET format strings (ex. {{\""key\"": \""{{0}}\"" }}), supports Okta token injection (ex. {{\""key\"": \""{Constants.OktaTokenFind}\"" }})""
                 }},
                 ""Headers"": {{
                     ""type"": ""array"",
                     ""title"": ""Headers"",
-                    ""description"": ""The headers of the request"",
+                    ""description"": ""The headers of the request, supports Okta token injection (ex. Key: Authorization, Value: Bearer {Constants.OktaTokenFind})"",
                     ""items"": {{
                         ""type"": ""object"",
                         ""properties"": {{

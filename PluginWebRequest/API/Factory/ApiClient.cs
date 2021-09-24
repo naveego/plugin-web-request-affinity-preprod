@@ -16,22 +16,26 @@ namespace PluginWebRequest.API.Factory
         private IApiAuthenticator Authenticator { get; set; }
         private static HttpClient Client { get; set; }
         private ConfigureWriteFormData Settings { get; set; }
+        private Settings ConnectSettings { get; set; }
         
-        public ApiClient(HttpClient client, ConfigureWriteFormData settings)
+        public ApiClient(HttpClient client, ConfigureWriteFormData settings, Settings connectSettings)
         {
-            Authenticator = new ApiAuthenticator(client, settings);
+            Authenticator = new ApiAuthenticator(client, connectSettings);
             Client = client;
             Settings = settings;
+            ConnectSettings = connectSettings;
             
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
-            if (Settings.Headers != null)
-            {
-                foreach (var header in Settings.Headers)
-                {
-                    Client.DefaultRequestHeaders.Add(header.Key, header.Value);
-                }
-            }
+        public ApiClient(HttpClient client, Settings connectSettings)
+        {
+            Authenticator = new ApiAuthenticator(client, connectSettings);
+            Client = client;
+            Settings = new ConfigureWriteFormData();
+            ConnectSettings = connectSettings;
+            
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         
         public async Task TestConnection()
@@ -61,6 +65,11 @@ namespace PluginWebRequest.API.Factory
             }
         }
 
+        public async Task<string> GetToken()
+        {
+            return await Authenticator.GetToken();
+        }
+
         public async Task<HttpResponseMessage> GetAsync(string path)
         {
             try
@@ -75,6 +84,21 @@ namespace PluginWebRequest.API.Factory
                     Method = HttpMethod.Get,
                     RequestUri = uri,
                 };
+
+                if (Settings.Headers != null)
+                {
+                    foreach (var header in Settings.Headers)
+                    {
+                        if (header.Value.Contains(Constants.OktaTokenFind))
+                        {
+                            request.Headers.Add(header.Key, header.Value.Replace(Constants.OktaTokenFind, token));
+                        }
+                        else
+                        {
+                            request.Headers.Add(header.Key, header.Value);
+                        }
+                    }
+                }
 
                 return await Client.SendAsync(request);
             }
@@ -101,6 +125,21 @@ namespace PluginWebRequest.API.Factory
                     Content = json
                 };
                 
+                if (Settings.Headers != null)
+                {
+                    foreach (var header in Settings.Headers)
+                    {
+                        if (header.Value.Contains(Constants.OktaTokenFind))
+                        {
+                            request.Headers.Add(header.Key, header.Value.Replace(Constants.OktaTokenFind, token));
+                        }
+                        else
+                        {
+                            request.Headers.Add(header.Key, header.Value);
+                        }
+                    }
+                }
+                
                 return await Client.SendAsync(request);
             }
             catch (Exception e)
@@ -125,6 +164,21 @@ namespace PluginWebRequest.API.Factory
                     RequestUri = uri,
                     Content = json
                 };
+                
+                if (Settings.Headers != null)
+                {
+                    foreach (var header in Settings.Headers)
+                    {
+                        if (header.Value.Contains(Constants.OktaTokenFind))
+                        {
+                            request.Headers.Add(header.Key, header.Value.Replace(Constants.OktaTokenFind, token));
+                        }
+                        else
+                        {
+                            request.Headers.Add(header.Key, header.Value);
+                        }
+                    }
+                }
 
                 return await Client.SendAsync(request);
             }
@@ -150,6 +204,21 @@ namespace PluginWebRequest.API.Factory
                     RequestUri = uri,
                     Content = json
                 };
+                
+                if (Settings.Headers != null)
+                {
+                    foreach (var header in Settings.Headers)
+                    {
+                        if (header.Value.Contains(Constants.OktaTokenFind))
+                        {
+                            request.Headers.Add(header.Key, header.Value.Replace(Constants.OktaTokenFind, token));
+                        }
+                        else
+                        {
+                            request.Headers.Add(header.Key, header.Value);
+                        }
+                    }
+                }
 
                 return await Client.SendAsync(request);
             }
@@ -174,6 +243,21 @@ namespace PluginWebRequest.API.Factory
                     Method = HttpMethod.Delete,
                     RequestUri = uri
                 };
+                
+                if (Settings.Headers != null)
+                {
+                    foreach (var header in Settings.Headers)
+                    {
+                        if (header.Value.Contains(Constants.OktaTokenFind))
+                        {
+                            request.Headers.Add(header.Key, header.Value.Replace(Constants.OktaTokenFind, token));
+                        }
+                        else
+                        {
+                            request.Headers.Add(header.Key, header.Value);
+                        }
+                    }
+                }
 
                 return await Client.SendAsync(request);
             }

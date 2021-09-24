@@ -6,6 +6,7 @@ namespace PluginWebRequest.API.Factory
     public interface IApiClient
     {
         Task TestConnection();
+        Task<string> GetToken();
         Task<HttpResponseMessage> GetAsync(string path);
         Task<HttpResponseMessage> PostAsync(string path, StringContent json);
         Task<HttpResponseMessage> PutAsync(string path, StringContent json);

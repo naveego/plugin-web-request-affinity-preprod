@@ -5,6 +5,7 @@ namespace PluginWebRequest.API.Factory
 {
     public interface IApiClientFactory
     {
-        IApiClient CreateApiClient(ConfigureWriteFormData settings);
+        IApiClient CreateApiClient(ConfigureWriteFormData settings, Settings connectSettings);
+        IApiClient CreateApiClient(Settings connectSettings);
     }
 }
