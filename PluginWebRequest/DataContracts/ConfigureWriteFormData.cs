@@ -8,7 +8,7 @@ namespace PluginWebRequest.DataContracts
         public string Method { get; set; }
         public string Url { get; set; }
         public string Body { get; set; }
-        public List<Header> Headers { get; set; }
+        public List<Header>? Headers { get; set; }
     }
 
     public class Header
