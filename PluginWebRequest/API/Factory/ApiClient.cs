@@ -25,9 +25,12 @@ namespace PluginWebRequest.API.Factory
             
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            foreach (var header in Settings.Headers)
+            if (Settings.Headers != null)
             {
-                Client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                foreach (var header in Settings.Headers)
+                {
+                    Client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                }
             }
         }
         
