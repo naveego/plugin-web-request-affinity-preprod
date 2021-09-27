@@ -27,12 +27,27 @@ namespace PluginWebRequestTest.Plugin
         private ConnectRequest GetConnectSettings()
         {
             var settings = GetSettings();
+            
+            var oAuthConfig = new OAuthConfiguration
+            {
+                ClientId = "", // add to test
+                ClientSecret = "", // add to test
+            };
+            
+            var oAuthState = new OAuthState
+            {
+                RefreshToken = "8", // add to test
+                Config = JsonConvert.SerializeObject(new OAuthConfig
+                {
+                    RedirectUri = "" // add to test
+                })
+            };
 
             return new ConnectRequest
             {
                 SettingsJson = JsonConvert.SerializeObject(settings),
-                OauthConfiguration = null,
-                OauthStateJson = ""
+                OauthConfiguration = oAuthConfig,
+                OauthStateJson = JsonConvert.SerializeObject(oAuthState)
             };
         }
 
@@ -269,19 +284,19 @@ namespace PluginWebRequestTest.Plugin
         ""accept"": ""*/*"",
         ""accept-encoding"": ""gzip, deflate"",
         ""cache-control"": ""no-cache"",
-        ""postman-token"": ""5c27cd7d-6b16-4e5a-a0ef-191c9a3a275f"",
+        ""postman-token"": ""[OKTA_TOKEN]"",
         ""user-agent"": ""PostmanRuntime/7.6.1"",
         ""x-forwarded-port"": ""{0}""
     },
     ""url"": ""{1}""
 }";
             // https://postman-echo.com/post
-            var formData = GetFormData("test", "https://postman-echo.com/{0}", body,"POST", new List<Header>
+            var formData = GetFormData("test", "https://postman-echo.com/{0}?token=[OKTA_TOKEN]", body,"POST", new List<Header>
             {
                 new Header
                 {
                     Key = "Authentication",
-                    Value = "Bearer token"
+                    Value = "Bearer [OKTA_TOKEN]"
                 }
             });
 
@@ -305,7 +320,7 @@ namespace PluginWebRequestTest.Plugin
             Assert.Equal("test", schema.Id);
             Assert.Equal("test", schema.Name);
             Assert.Equal("", schema.Description);
-            Assert.Equal("https://postman-echo.com/{0}", schema.Query);
+            Assert.Equal("https://postman-echo.com/{0}?token=[OKTA_TOKEN]", schema.Query);
             Assert.Equal(Schema.Types.DataFlowDirection.Write, schema.DataFlowDirection);
             Assert.Equal(3, schema.Properties.Count);
 
@@ -368,19 +383,19 @@ namespace PluginWebRequestTest.Plugin
         ""accept"": ""*/*"",
         ""accept-encoding"": ""gzip, deflate"",
         ""cache-control"": ""no-cache"",
-        ""postman-token"": ""5c27cd7d-6b16-4e5a-a0ef-191c9a3a275f"",
+        ""postman-token"": ""[OKTA_TOKEN]"",
         ""user-agent"": ""PostmanRuntime/7.6.1"",
         ""x-forwarded-port"": ""443""
     },
     ""url"": ""{0}""
 }";
             // https://postman-echo.com/post
-            var formData = GetFormData("test", "https://postman-echo.com/{0}", body,"POST", new List<Header>
+            var formData = GetFormData("test", "https://postman-echo.com/{0}?token=[OKTA_TOKEN]", body,"POST", new List<Header>
             {
                 new Header
                 {
                     Key = "Authentication",
-                    Value = "Bearer token"
+                    Value = "Bearer [OKTA_TOKEN]"
                 }
             });
 
