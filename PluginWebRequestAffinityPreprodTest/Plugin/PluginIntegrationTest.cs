@@ -36,7 +36,7 @@ namespace PluginWebRequestTest.Plugin
             
             var oAuthState = new OAuthState
             {
-                RefreshToken = "8", // add to test
+                RefreshToken = "", // add to test
                 Config = JsonConvert.SerializeObject(new OAuthConfig
                 {
                     RedirectUri = "" // add to test
